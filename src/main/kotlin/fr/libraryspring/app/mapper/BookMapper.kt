@@ -22,12 +22,10 @@ class BookMapper(
         editions = book.editions.map {
             editionMapper.toEditionDto(it)
         }
-
     )
 
     fun fromCreateBook(createOrUpdateBook: CreateOrUpdateBook, author: Author?) = Book(
         title = createOrUpdateBook.title,
         author = author
     )
-
 }
