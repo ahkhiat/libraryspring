@@ -1,4 +1,4 @@
-package fr.immocontact.app
+package fr.libraryspring.app
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

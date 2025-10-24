@@ -1,4 +1,4 @@
-package fr.immocontact.app
+package fr.libraryspring.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

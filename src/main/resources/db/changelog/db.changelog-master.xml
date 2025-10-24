@@ -20,5 +20,102 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="2" author="thierry">
+        <renameColumn
+                tableName="agent"
+                oldColumnName="name"
+                newColumnName="lastname"
+                columnDataType="VARCHAR(50)"
+        />
+    </changeSet>
+
+    <changeSet id="3" author="thierry">
+        <modifyDataType
+                tableName="agent"
+                columnName="id"
+                newDataType="VARCHAR(36)"
+                />
+    </changeSet>
+
+    <changeSet id="4" author="thierry">
+        <modifyDataType
+                tableName="agent"
+                columnName="id"
+                newDataType="BINARY(16)"
+        />
+    </changeSet>
+
+    <changeSet id="5" author="thierry">
+        <createTable tableName="author">
+            <column name="id" type="BINARY(16)" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="firstname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="6" author="thierry">
+        <createTable tableName="book">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="isbn" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publication_year" type="INT"/>
+
+            <column name="author_id" type="BINARY(16)">
+                <constraints nullable="true"
+                             foreignKeyName="fk_book_author"
+                             references="author(id)"
+                />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="thierry">
+        <dropColumn tableName="book"
+                    columnName="publication_year"
+                    />
+    </changeSet>
+
+    <changeSet id="8" author="thierry">
+        <dropColumn tableName="book"
+                    columnName="isbn"
+        />
+    </changeSet>
+
+    <changeSet id="9" author="thierry">
+        <createTable tableName="edition">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="isbn" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="publisher" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publication_year" type="INT"/>
+
+            <column name="book_id" type="BINARY(16)">
+                <constraints nullable="true"
+                             foreignKeyName="fk_edition_book"
+                             references="book(id)"
+                />
+            </column>
+        </createTable>
+    </changeSet>
+
+
 
 </databaseChangeLog>
